@@ -1,14 +1,14 @@
 import requests
-import zipfile
 import io
 import pandas as pd
 import easygui
-from bs4 import BeautifulSoup
+import chef
+import zipfile
 
 def unzip_csv(url, name):
 	results = requests.get(url)
-	zip = zipfile.ZipFile(io.BytesIO(results.content))
-	zip_file_list = zip.namelist()
+	unzipped = zipfile.ZipFile(io.BytesIO(results.content))
+	zip_file_list = unzipped.namelist()
 	zip_files_choose(zip_file_list)
 	unzipped = zip.open(name)
 	csv = pd.read_csv(unzipped)
@@ -16,10 +16,10 @@ def unzip_csv(url, name):
 
 def unzip_xml(url, name):
 	results = requests.get(url)
-	zip = zipfile.ZipFile(io.BytesIO(results.content))
-	zip_file_list = zip.namelist()
+	unzipped = zipfile.ZipFile(io.BytesIO(results.content))
+	zip_file_list = unzipped.namelist()
 	zip_files_choose(zip_file_list)
-	unzipped = zip.open(name)
+	unzipped = unzipped.open(name)
 	return unzipped
 
 def zip_files_choose(file_list):
@@ -28,9 +28,9 @@ def zip_files_choose(file_list):
 	title = "Zip File List"
 	choices = file_list
 	choice = easygui.choicebox(msg, title, choices)
+	return choice
 
-def return_soup(type):
-	if type == "xml":
-		soup = xh.make_soup_from_URL(url, "xml")
-	elif type == "csv":
-		soup = xh
+def return_soup(url, source_type):
+	if source_type == "xml":
+		soup = chef.make_soup_from_URL(url, "xml")
+	return soup
