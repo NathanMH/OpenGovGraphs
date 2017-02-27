@@ -1,5 +1,6 @@
 import canadianTelecomSoup
 import matplotlib.pyplot as plt
+from matplotlib.widgets import Slider
 import numpy as np
 import re
 from canadianTelecomSoup import TelecomStats
@@ -16,7 +17,6 @@ def plot_cities(dictionary):
             cities_am.append(k)
             telecom_counts_am.append(v)
         elif re.match("^[n-zN-Z]", k[0]):
-            print(k + " starts with " + k[0])
             cities_nz.append(k)
             telecom_counts_nz.append(v)
 
@@ -24,7 +24,7 @@ def plot_cities(dictionary):
     x_pos = np.arange(len(cities_am))
     plt.yticks(x_pos, cities_am)
     plt.barh(x_pos, telecom_counts_am, align='center', alpha=0.5)
-    
+
     plt.ylabel("Cities A-M")
     plt.xlabel("Number of companies")
     plt.title("Distribution of telecommunication companies throughout Canada")
@@ -34,7 +34,7 @@ def plot_cities(dictionary):
     x_pos = np.arange(len(cities_nz))
     plt.yticks(x_pos, cities_nz)
     plt.barh(x_pos, telecom_counts_nz, align='center', alpha=0.5)
-    
+
     plt.ylabel("Cities N-Z")
     plt.xlabel("Number of companies")
     plt.title("Distribution of telecommunication companies throughout Canada")
