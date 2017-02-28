@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
 import numpy as np
 import re
-from canadianTelecomSoup import TelecomStats
+import graphOptionsGUI as gui
+
 
 # Source: http://open.canada.ca/data/en/dataset/5a0c9cbb-e0d3-47db-b5bc-dd57430ef200
 def plot_cities(dictionary):
@@ -25,9 +26,13 @@ def plot_cities(dictionary):
     plt.yticks(x_pos, cities_am)
     plt.barh(x_pos, telecom_counts_am, align='center', alpha=0.5)
 
-    plt.ylabel("Cities A-M")
-    plt.xlabel("Number of companies")
-    plt.title("Distribution of telecommunication companies throughout Canada")
+    # plt.ylabel("Cities A-M")
+    plt.ylabel(gui.choose_y_label())
+    # plt.xlabel("Number of companies")
+    plt.ylabel(gui.choose_x_label())
+    # plt.title("Distribution of telecommunication companies throughout Canada")
+    plt.title(gui.choose_title())
+
     plt.show()
 
     # n-z cities
