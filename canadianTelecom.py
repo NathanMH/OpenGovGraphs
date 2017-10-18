@@ -3,7 +3,9 @@ import chef
 import graphOptionsGUI
 
 # Imports for graphing
+import matplotlib
 import matplotlib.pyplot as plt
+matplotlib.use('Agg')
 import numpy as np
 
 class TelecomStats:

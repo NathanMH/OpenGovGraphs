@@ -1,5 +1,8 @@
 import easygui as eg
 
+print("Hello World")
+
+eg.msgbox("hello world")
 
 class gui_settings:
 
